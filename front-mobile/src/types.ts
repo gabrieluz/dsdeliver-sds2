@@ -1,12 +1,12 @@
 export type Order = {
-    address: string,
-    id: number,
-    latitude: number,
-    longitude: number,
-    moment: string,
+    id: number
+    address: string
+    latitude: number
+    longitude: number
+    moment: string
+    status: string
     products: Product[]
-    status: string,
-    total: number,
+    total: number
 }
 
 export type Product = {

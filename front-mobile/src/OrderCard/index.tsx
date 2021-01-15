@@ -11,6 +11,7 @@ dayjs.extend(relativeTime)
 type Props = {
   order : Order
 }
+
 function dateFromNow(date: string){
   return dayjs(date).fromNow()
 }
@@ -25,48 +26,32 @@ export function formatPrice(price: number){
     return formatter.format(price)
 }
 
-export default function OrderCard({order}: Props) {
+function OrderCard({ order }: Props) {
   return (
-    <View style={styles.container} >
+      <View style={styles.container} >
         <View style={styles.header}>
           <Text style={styles.orderName}>
-            Pedido 
+            Pedido {order.id}
           </Text>
           <Text style={styles.orderPrice}>
-            sdtsdfgsdf
+            {formatPrice(order.total)}
           </Text>
         </View>
         <Text style={styles.text}>
-          sdfgdfgsdf
+          {dateFromNow(order.moment)}
         </Text>
         <View style={styles.productsList}>
-            <Text style={styles.text}>
-              fdgsdfg
+          {order.products.map(product =>{
+            <Text style={styles.text} key={product.id} >
+              {product.name}
             </Text>
+          })}
         </View>
       </View>
-      // <View style={styles.container} >
-      //   <View style={styles.header}>
-      //     <Text style={styles.orderName}>
-      //       Pedido {order.id}
-      //     </Text>
-      //     <Text style={styles.orderPrice}>
-      //       {formatPrice(order.total)}
-      //     </Text>
-      //   </View>
-      //   <Text style={styles.text}>
-      //     {dateFromNow(order.moment)}
-      //   </Text>
-      //   <View style={styles.productsList}>
-      //     {order.products.map(product =>{
-      //       <Text style={styles.text} key={product.id} >
-      //         {product.name}
-      //       </Text>
-      //     })}
-      //   </View>
-      // </View>
   );
 }
+
+export default OrderCard
 
 const styles = StyleSheet.create({
   container: {

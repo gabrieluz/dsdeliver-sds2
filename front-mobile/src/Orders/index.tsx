@@ -2,7 +2,7 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { RectButton, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import {fetchOrders} from '../api';
 import Header from '../Header';
 import OrderCard from '../OrderCard';
@@ -25,7 +25,7 @@ export default function Orders() {
   useEffect(()=>{
     if(isFocused)
       fetchData()
-  },[isFocused])
+  }, [isFocused])
 
   const handleOnPress = (order: Order) =>{
     navigation.navigate('OrderDetails', {
